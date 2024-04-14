@@ -8,7 +8,7 @@ const page = () => {
 		<div className="registerpage">
 			<Header />
 			<div className="form-container">
-				<h2>Dare | Dream | Innovate</h2>
+				<h2>Dream | Dare | Innovate</h2>
 				<Form />
 			</div>
 			<Footer />
