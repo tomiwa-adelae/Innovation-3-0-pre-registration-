@@ -1,9 +1,11 @@
 "use client";
 
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Form = () => {
+	const BASE_URL = "https://innovation-backend-h876.onrender.com";
+
 	const [name, setName] = useState("");
 	const [email, setEmail] = useState("");
 	const [phoneNumber, setPhoneNumber] = useState("");
@@ -12,6 +14,15 @@ const Form = () => {
 	const [loading, setLoading] = useState(null);
 	const [success, setSuccess] = useState(null);
 	const [error, setError] = useState(null);
+
+	useEffect(() => {
+		// Hit backend to jumpstart the server and reduce time of spin-down
+		async function hitDB() {
+			await axios.get(`${BASE_URL}/`);
+		}
+
+		hitDB();
+	}, []);
 
 	const submitHandler = async (e) => {
 		e.preventDefault();
@@ -26,7 +37,7 @@ const Form = () => {
 
 		try {
 			const res = await axios.post(
-				`https://innovation-backend-h876.onrender.com/api/register`,
+				`${BASE_URL}/api/register`,
 				{ name, email, phoneNumber, expectations, address },
 				config
 			);
