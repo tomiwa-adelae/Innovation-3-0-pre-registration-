@@ -10,6 +10,7 @@ const Form = () => {
 	const [email, setEmail] = useState("");
 	const [phoneNumber, setPhoneNumber] = useState("");
 	const [address, setAddress] = useState("");
+	const [institution, setInstitution] = useState("");
 	const [expectations, setExpectations] = useState("");
 	const [loading, setLoading] = useState(null);
 	const [success, setSuccess] = useState(null);
@@ -38,7 +39,14 @@ const Form = () => {
 		try {
 			const res = await axios.post(
 				`${BASE_URL}/api/register`,
-				{ name, email, phoneNumber, expectations, address },
+				{
+					name,
+					email,
+					phoneNumber,
+					expectations,
+					institution,
+					address,
+				},
 				config
 			);
 
@@ -95,6 +103,15 @@ const Form = () => {
 					type="text"
 					value={address}
 					onChange={(e) => setAddress(e.target.value)}
+				/>
+			</div>
+			<div>
+				<label htmlFor="institution">Institution</label>
+				<input
+					id="institution"
+					type="text"
+					value={institution}
+					onChange={(e) => setInstitution(e.target.value)}
 				/>
 			</div>
 			<div>
